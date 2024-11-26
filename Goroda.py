@@ -22,7 +22,7 @@ def show_coordinates(event = None):
     label.config(text = f'Координаты города {city}:\n {coordinates}')
 
 
-key = '...'
+key = '8d3bbb4150fa4de7b811b9aab057007d'
 
 window = Tk()
 window.title('Координаты городов')
