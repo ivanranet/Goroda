@@ -10,8 +10,12 @@ def get_coordinates(city, key):
             lat = round(results[0]['geometry']['lat'], 3)
             lon = round(results[0]['geometry']['lng'], 3)
             country = results[0]['components']['country']
-            region = results[0]['components']['state']
-            return f'широта {lat},\nдолгота {lon},\nстрана: {country},\nрегион: {region}'
+
+            if 'state' in results[0]['components']:
+                region = results[0]['components']['state']
+                return f'широта {lat},\nдолгота {lon},\nстрана: {country},\nрегион: {region}'
+            else:
+                return f'широта {lat},\nдолгота {lon},\nстрана: {country}.'
         else:
             return 'Город не найден.'
     except Exception as e:
