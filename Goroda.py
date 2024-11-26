@@ -1,4 +1,3 @@
-from auto_py_to_exe.config import language_hint
 from opencage.geocoder import OpenCageGeocode
 
 
@@ -7,7 +6,9 @@ def get_coordinates(city, key):
         geocoder = OpenCageGeocode(key)
         results = geocoder.geocode(city, language = 'ru')
         if results:
-            return results[0]['geometry']['lat'], results[0]['geometry']['lng']
+            lat = round(results[0]['geometry']['lat'], 3)
+            lon = round(results[0]['geometry']['lng'], 3)
+            return lat, lon
         else:
             return 'Город не найден.'
     except Exception as e:
@@ -15,6 +16,6 @@ def get_coordinates(city, key):
 
 
 key = '...'
-city = 'London'
+city = 'Каменск-Уральский'
 coordinates = get_coordinates(city, key)
 print(f'Координаты города {city}: {coordinates}')
