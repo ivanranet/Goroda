@@ -45,12 +45,16 @@ def show_map():
         webbrowser.open(map_url)
 
 
+def clear_entry():
+    entry.delete(0, END)
+
+
 key = '...'
 map_url = ''
 
 window = Tk()
 window.title('Координаты городов')
-window.geometry('350x200')
+window.geometry('350x210')
 
 entry = Entry()
 entry.pack()
@@ -64,5 +68,8 @@ label.pack()
 
 map_button = Button(text = 'Показать карту', command = show_map)
 map_button.pack()
+
+clear_button = Button(text = 'Очистить', command = clear_entry)
+clear_button.pack()
 
 window.mainloop()
