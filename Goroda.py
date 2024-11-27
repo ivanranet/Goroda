@@ -11,17 +11,19 @@ def get_coordinates(city, key):
             lat = round(results[0]['geometry']['lat'], 3)
             lon = round(results[0]['geometry']['lng'], 3)
             country = results[0]['components']['country']
+            money = results[0]['annotations']['currency']['name']
             osm_url = f'https://www.openstreetmap.org/?mlat={lat}&mlon={lon}'
 
             if 'state' in results[0]['components']:
                 region = results[0]['components']['state']
+
                 return {
-                    'coordinates': f'широта {lat},\nдолгота {lon},\nстрана: {country},\nрегион: {region}',
+                    'coordinates': f'широта {lat},\nдолгота {lon},\nстрана: {country},\nрегион: {region},\nвалюта: {money}',
                     'map_url': osm_url
                         }
             else:
                 return {
-                    'coordinates': f'широта {lat},\nдолгота {lon},\nстрана: {country}',
+                    'coordinates': f'широта {lat},\nдолгота {lon},\nстрана: {country},\nвалюта: {money}',
                     'map_url': osm_url
                         }
         else:
@@ -48,7 +50,7 @@ map_url = ''
 
 window = Tk()
 window.title('Координаты городов')
-window.geometry('350x160')
+window.geometry('350x200')
 
 entry = Entry()
 entry.pack()
